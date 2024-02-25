@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+
+        form {
+            margin: 0 auto; /* This centers the form horizontally */
+            width: 100%; /* Make the form width 100% */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Assignments</h1>
+        <form method="POST">
+            <label for="volunteer">Select Volunteer:</label>
+            <select id="volunteer" name="volunteer" required>
+                {% for index, row in volunteers.iterrows() %}
+                <option value="{{ row['Name'] }}">{{ row['Name'] }}</option>
+                {% endfor %}
+            </select><br><br>
+            <label for="event">Select Event:</label>
+            <select id="event" name="event" required>
+                {% for index, row in events.iterrows() %}
+                <option value="{{ row['Event'] }}">{{ row['Event'] }}</option>
+                {% endfor %}
+            </select><br><br>
+            <button type="submit">Assign Volunteer</button>
+        </form>
+        <h2>Current Assignments</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Volunteer</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in assignments.iterrows() %}
+                <tr>
+                    <td>{{ row['Volunteer'] }}</td>
+                    <td>{{ row['Event'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

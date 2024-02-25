@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Events</h1>
+        <form method="POST">
+            <label for="event_name">Event Name:</label>
+            <input type="text" id="event_name" name="event_name" required><br><br>
+            <label for="event_category">Category:</label>
+            <select id="event_category" name="event_category" required>
+                <option value="Arts & Culture">Arts & Culture</option>
+                <option value="Business & Finance">Business & Finance</option>
+                <option value="Education & Learning">Education & Learning</option>
+                <option value="Entertainment & Lifestyle">Entertainment & Lifestyle</option>
+                <option value="Health & Wellness">Health & Wellness</option>
+                <option value="Science & Technology">Science & Technology</option>
+                <option value="Social Impact & Activism">Social Impact & Activism</option>
+            </select><br><br>
+            <label for="event_date">Date:</label>
+            <input type="date" id="event_date" name="event_date" required><br><br>
+            <label for="event_location">Location:</label>
+            <input type="text" id="event_location" name="event_location" required><br><br>
+            <button type="submit">Add Event</button>
+        </form>
+        <h2>Current Events</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in events.iterrows() %}
+                <tr>
+                    <td>{{ row['Event'] }}</td>
+                    <td>{{ row['Category'] }}</td>
+                    <td>{{ row['Date'] }}</td>
+                    <td>{{ row['Location'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

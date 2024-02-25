@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteers</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .scrollable-table {
+            max-height: 300px; /* Adjust the height as needed */
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Volunteers</h1>
+        <form method="POST">
+            <label for="volunteer_name">Name:</label>
+            <input type="text" id="volunteer_name" name="volunteer_name" required><br><br>
+            <label for="volunteer_interests">Interests:</label>
+            <select id="volunteer_interests" name="volunteer_interests" required>
+                <option value="Arts & Culture">Arts & Culture</option>
+                <option value="Business & Finance">Business & Finance</option>
+                <option value="Education & Learning">Education & Learning</option>
+                <option value="Entertainment & Lifestyle">Entertainment & Lifestyle</option>
+                <option value="Health & Wellness">Health & Wellness</option>
+                <option value="Science & Technology">Science & Technology</option>
+                <option value="Social Impact & Activism">Social Impact & Activism</option>
+            </select><br><br>
+            <label for="volunteer_availability">Availability:</label><br>
+            <input type="checkbox" id="monday" name="volunteer_availability" value="Monday">
+            <label for="monday">Monday</label><br>
+            <input type="checkbox" id="tuesday" name="volunteer_availability" value="Tuesday">
+            <label for="tuesday">Tuesday</label><br>
+            <input type="checkbox" id="wednesday" name="volunteer_availability" value="Wednesday">
+            <label for="wednesday">Wednesday</label><br>
+            <input type="checkbox" id="thursday" name="volunteer_availability" value="Thursday">
+            <label for="thursday">Thursday</label><br>
+            <input type="checkbox" id="friday" name="volunteer_availability" value="Friday">
+            <label for="friday">Friday</label><br>
+            <input type="checkbox" id="saturday" name="volunteer_availability" value="Saturday">
+            <label for="saturday">Saturday</label><br>
+            <input type="checkbox" id="sunday" name="volunteer_availability" value="Sunday">
+            <label for="sunday">Sunday</label><br><br>
+            <button type="submit">Add Volunteer</button>
+        </form>
+        <div class="scrollable-table">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Interests</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, row in volunteers.iterrows() %}
+                    <tr>
+                        <td>{{ row['Name'] }}</td>
+                        <td>{{ row['Interests'] }}</td>
+                        <td>{{ row['Availability'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
